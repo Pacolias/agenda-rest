@@ -26,6 +26,26 @@ public class LogicaContactos {
 		return repo.findAll();
 	}
 	
-	// TODO
+	public Contacto createContact(Contacto contacto){
+		return repo.save(contacto);
+	}
+
+	public Optional<Contacto> findById(Long id){
+		return repo.findById(id);
+	}
+
+	public Contacto updateContact(Long id, Contacto contact){
+		if(repo.existsById(id)){
+			contact.setId(id);
+			return repo.save(contact);
+
+		} else{
+			return null;
+		}
+	}
+
+	public void removeById(Long id){
+		repo.deleteById(id);
+	}
 	
 }

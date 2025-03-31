@@ -2,6 +2,7 @@ package es.uma.informatica.sii.practica2.controladores;
 
 import java.net.URI;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -36,18 +37,36 @@ public class ControladorRest {
 
 	// POST: Creates a new contact
 	@PostMapping
-	public ResponseEntity<?> aniadirContacto(@RequestBody Contacto contacto, UriComponentsBuilder builder) {
-		// TODO
+	public ResponseEntity<?> addContact(@RequestBody Contacto contact, UriComponentsBuilder builder) {
+		servicio.createContact(contact);
 		URI uri = builder
 				.path("/api")
 				.path("/agenda")
 				.path("/contactos")
-				.path(String.format("/%d",contacto.getId()))
+				.path(String.format("/%d",contact.getId()))
 				.build()
 				.toUri();
 		return ResponseEntity.created(uri).build();
 	}
 	
-	// TODO
+	// GET: Returns information about a contact
+	@GetMapping("{id}")
+	public ResponseEntity<Contacto> getContact(@PathVariable(name = "id") Long id){
+		Optional<Contacto> contact = servicio.findById(id);
+		return ResponseEntity.of(contact);
+	}
 
+	// PUT: Modifies the information of a contact
+	@PutMapping("{id}")
+	public ResponseEntity<Contacto> modifyContact(@PathVariable(name = "id") Long id, @RequestBody Contacto contactMod){
+		Contacto updatedContact = servicio.updateContact(id, contactMod);
+		return updatedContact != null ? ResponseEntity.ok(updatedContact) : ResponseEntity.notFound().build();
+	}
+
+	// DELETE: Removes a contact
+	@DeleteMapping("{id}")
+	public ResponseEntity<Void> removeContactById(@PathVariable(name = "id") Long id){
+		servicio.removeById(id);
+		return ResponseEntity.noContent().build();
+	}
 }
