@@ -10,8 +10,6 @@ import org.springframework.transaction.annotation.Transactional;
 import es.uma.informatica.sii.practica2.entidades.Contacto;
 import es.uma.informatica.sii.practica2.repositorios.ContactoRepo;
 import es.uma.informatica.sii.practica2.servicios.excepciones.ContactoNoEncontrado;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 
 @Service
 @Transactional
@@ -28,10 +26,6 @@ public class LogicaContactos {
 		return repo.findAll();
 	}
 	
-	@PostMapping("/createContact")
-	public String createContact(@RequestBody Contacto contacto){
-		repo.save(contacto);
-		return "Contacto creado: " + contacto.getNombre() + " - " + contacto.getApellidos() + " - " + contacto.getTelefono();
-	}
+	// TODO
 	
 }

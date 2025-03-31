@@ -28,11 +28,13 @@ public class ControladorRest {
 		servicio = servicioContactos;
 	}
 
+	// GET: Returns the list of contacts
 	@GetMapping
 	public ResponseEntity<List<Contacto>> listaDeContactos() {
 		return ResponseEntity.ok(servicio.getTodosContactos());
 	}
 
+	// POST: Creates a new contact
 	@PostMapping
 	public ResponseEntity<?> aniadirContacto(@RequestBody Contacto contacto, UriComponentsBuilder builder) {
 		// TODO
