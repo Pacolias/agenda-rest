@@ -26,8 +26,8 @@ public class LogicaContactos {
 		return repo.findAll();
 	}
 	
-	public Contacto createContact(Contacto contacto){
-		return repo.save(contacto);
+	public Contacto createContact(Contacto contact){
+		return repo.save(contact);
 	}
 
 	public Optional<Contacto> findById(Long id){
@@ -47,5 +47,8 @@ public class LogicaContactos {
 	public void removeById(Long id){
 		repo.deleteById(id);
 	}
-	
+
+	public boolean existsContact(Long id){
+		return repo.existsById(id);
+	}
 }

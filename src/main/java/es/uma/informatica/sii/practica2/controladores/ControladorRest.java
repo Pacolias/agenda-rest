@@ -66,7 +66,10 @@ public class ControladorRest {
 	// DELETE: Removes a contact
 	@DeleteMapping("{id}")
 	public ResponseEntity<Void> removeContactById(@PathVariable(name = "id") Long id){
+		if(!servicio.existsContact(id)){
+			return ResponseEntity.notFound().build();
+		}
 		servicio.removeById(id);
-		return ResponseEntity.noContent().build();
+		return ResponseEntity.ok().build();
 	}
 }
