@@ -1,0 +1,25 @@
+# Archivos y directorios de compilación
+*.class
+*.o
+*.exe
+
+# Directorios de compilación
+/target/
+/bin/
+
+# archivos de configuración IDE
+.idea/
+/.vscode/
+
+# Archivos de entorno
+.env
+
+# Archivos de sistema
+*.log
+*.tmp
+.DS_Store
+Thumbs.db
+
+# Dependencias
+node_modules/
+.m2/
