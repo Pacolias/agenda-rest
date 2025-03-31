@@ -27,6 +27,7 @@ public class LogicaContactos {
 	}
 	
 	public Contacto createContact(Contacto contact){
+		contact.setId(null);
 		return repo.save(contact);
 	}
 
